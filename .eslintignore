@@ -1,0 +1,5 @@
+# Add files here to ignore them from eslint formatting
+
+/dist
+/node_modules
+/coverage
