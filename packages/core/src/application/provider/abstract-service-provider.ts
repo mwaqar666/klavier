@@ -1,5 +1,5 @@
-import type { IServiceProvider } from "../../contracts/provider";
 import type { DIContainer } from "@wessberg/di";
+import type { IServiceProvider } from "../../contracts/provider";
 
 export abstract class AbstractServiceProvider implements IServiceProvider {
 	protected container: DIContainer;

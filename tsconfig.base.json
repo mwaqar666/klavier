@@ -10,8 +10,14 @@
     "module": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "@spark/core": [
+      "@klavier/config": [
+        "packages/config/src/index.ts"
+      ],
+      "@klavier/core": [
         "packages/core/src/index.ts"
+      ],
+      "@klavier/utils": [
+        "packages/utils/src/index.ts"
       ]
     }
   },

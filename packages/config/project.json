@@ -1,7 +1,7 @@
 {
-  "name": "core",
+  "name": "config",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/core/src",
+  "sourceRoot": "packages/config/src",
   "projectType": "library",
   "targets": {
     "build": {
@@ -10,19 +10,19 @@
         "{options.outputPath}"
       ],
       "options": {
-        "rootDir": "packages/core/src",
-        "outputPath": "dist/packages/core",
-        "main": "packages/core/src/index.ts",
-        "tsConfig": "packages/core/tsconfig.json",
+        "rootDir": "packages/config/src",
+        "outputPath": "dist/packages/config",
+        "main": "packages/config/src/index.ts",
+        "tsConfig": "packages/config/tsconfig.json",
         "assets": [
-          "packages/core/*.md"
+          "packages/config/*.md"
         ]
       }
     },
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs core {args.ver} {args.tag} {args.otp}"
+        "command": "node tools/scripts/publish.mjs config {args.ver} {args.tag} {args.otp}"
       },
       "dependsOn": [
         "build"
@@ -35,7 +35,7 @@
       ],
       "options": {
         "lintFilePatterns": [
-          "packages/core/**/*.ts"
+          "packages/config/**/*.ts"
         ]
       }
     }

@@ -1,7 +1,7 @@
+import { DIContainer } from "@wessberg/di";
 import type { IApplication } from "../contracts/application";
 import type { IServiceProvider } from "../contracts/provider";
-import type { Constructable } from "../types";
-import { DIContainer } from "@wessberg/di";
+import type { Constructable } from "@klavier/utils";
 
 export class Application implements IApplication {
 	private container: DIContainer;
@@ -20,7 +20,7 @@ export class Application implements IApplication {
 		this.applicationProviders.push(providerInstance);
 	}
 
-	public bootApplicationService(): void {
+	public bootApplication(): void {
 		this.applicationProviders.map((provider: IServiceProvider) => {
 			provider.boot();
 		});
