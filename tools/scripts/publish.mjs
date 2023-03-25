@@ -9,6 +9,7 @@
 
 import devkit from "@nrwl/devkit";
 import { readFileSync } from "fs";
+import { execSync } from "child_process";
 import chalk from "chalk";
 
 const undefinedArg = "undefined";
@@ -52,4 +53,4 @@ try {
 const publishCommand = `npm publish --access public --tag=${ tag } --otp=${ otp }`;
 console.info(chalk.bold.blue(`Running publish command: ${ publishCommand }`));
 
-// execSync(publishCommand);
+execSync(publishCommand);
