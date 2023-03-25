@@ -4,6 +4,10 @@ export type Optional<T> = undefined | T;
 
 export type Nullable<T> = null | T;
 
+export type Delegate<TArgs extends Array<unknown> = Array<unknown>, TReturn = unknown> = (...args: TArgs) => TReturn;
+
+export type Action<TArgs extends Array<unknown> = Array<unknown>> = Delegate<TArgs, void>;
+
 export type Constructable<T, TArgs extends Array<unknown> = Array<unknown>> = new (...args: TArgs) => T;
 
 export type Without<T, R> = { [K in Exclude<Key<T>, Key<R>>]?: never };

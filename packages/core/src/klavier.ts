@@ -1,6 +1,7 @@
 import type { IApplication } from "./contracts/application";
 import type { IServiceProvider } from "./contracts/provider";
 import type { Constructable } from "@klavier/utils";
+import { Action } from "@klavier/utils";
 import { Application } from "./application";
 
 export class Klavier {
@@ -23,8 +24,8 @@ export class Klavier {
 		this.application.registerApplicationService(provider);
 	}
 
-	public run(): void {
-		this.application.bootApplication();
+	public run(host: string, port: number, callback?: Action): void {
+		this.application.bootApplication(host, port, callback);
 	}
 
 	private initializeApplication(): void {

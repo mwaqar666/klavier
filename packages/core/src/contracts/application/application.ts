@@ -1,10 +1,10 @@
 import type { IServiceProvider } from "../provider";
-import type { Constructable } from "@klavier/utils";
+import type { Action, Constructable } from "@klavier/utils";
 
 export interface IApplication {
 	registerServiceContainer(): void;
 
 	registerApplicationService(provider: Constructable<IServiceProvider>): void;
 
-	bootApplication(): void;
+	bootApplication(host: string, port: number, callback?: Action): void;
 }

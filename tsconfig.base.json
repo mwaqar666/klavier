@@ -16,6 +16,9 @@
       "@klavier/core": [
         "packages/core/src/index.ts"
       ],
+      "@klavier/express-adapter": [
+        "packages/adapters/express-adapter/src/index.ts"
+      ],
       "@klavier/utils": [
         "packages/utils/src/index.ts"
       ]

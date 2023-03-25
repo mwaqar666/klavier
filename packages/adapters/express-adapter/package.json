@@ -1,0 +1,11 @@
+{
+  "name": "@klavier/express-adapter",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "peerDependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17"
+  }
+}

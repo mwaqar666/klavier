@@ -22,7 +22,7 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs core {args.ver} {args.tag} {args.otp}"
+        "command": "node tools/scripts/publish.mjs core {args.tag} {args.otp}"
       },
       "dependsOn": [
         "build"

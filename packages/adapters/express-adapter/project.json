@@ -1,0 +1,44 @@
+{
+  "name": "adapters-express-adapter",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/adapters/express-adapter/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "rootDir": "packages/adapters/express-adapter/src",
+        "outputPath": "dist/packages/adapters/express-adapter",
+        "main": "packages/adapters/express-adapter/src/index.ts",
+        "tsConfig": "packages/adapters/express-adapter/tsconfig.json",
+        "assets": [
+          "packages/adapters/express-adapter/*.md"
+        ]
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs adapters-express-adapter {args.tag} {args.otp}"
+      },
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/adapters/express-adapter/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
