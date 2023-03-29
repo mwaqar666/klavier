@@ -1,5 +1,9 @@
 {
   "name": "@klavier/config",
-  "version": "0.0.1",
-  "type": "commonjs"
+  "version": "0.0.13",
+  "type": "commonjs",
+  "peerDependencies": {
+    "@types/js-yaml": "^4.0.5",
+    "js-yaml": "^4.1.0"
+  }
 }

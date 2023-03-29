@@ -10,6 +10,8 @@ export type Action<TArgs extends Array<unknown> = Array<unknown>> = Delegate<TAr
 
 export type Constructable<T, TArgs extends Array<unknown> = Array<unknown>> = new (...args: TArgs) => T;
 
+export type PartialOnly<T, K extends Key<T>> = Partial<Pick<T, K>> & Omit<T, K>;
+
 export type Without<T, R> = { [K in Exclude<Key<T>, Key<R>>]?: never };
 
 export type SingleExclusiveUnion<T, U> = T | U extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;

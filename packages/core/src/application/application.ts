@@ -1,31 +1,46 @@
-import { DIContainer } from "@wessberg/di";
+import type { Action, Constructable } from "@klavier/utils";
 import type { IApplication } from "../contracts/application";
 import type { IServiceProvider } from "../contracts/provider";
-import type { Action, Constructable } from "@klavier/utils";
+import type { IContainer } from "../contracts/container";
 import type { IHttpAdapter } from "../contracts/adapter";
+import { Container } from "./container";
+import { CoreConst } from "../const";
 
 export class Application implements IApplication {
-	private container: DIContainer;
+	private booted: boolean;
+	private container: IContainer;
 	private applicationProviders: Array<IServiceProvider> = [];
 
 	public registerServiceContainer(): void {
-		this.container = new DIContainer();
+		this.container = new Container();
+	}
+
+	public getServiceContainer(): IContainer {
+		return this.container;
 	}
 
 	public registerApplicationService(provider: Constructable<IServiceProvider>): void {
-		const providerInstance = this.runProviderRegisterCycle(provider);
+		const providerInstance: IServiceProvider = this.runProviderRegisterCycle(provider);
 
 		this.applicationProviders.push(providerInstance);
 	}
 
-	public bootApplication(host: string, port: number, callback?: Action): void {
+	public bootApplicationServices(): void {
 		this.runRegisteredProvidersBootCycle();
+
+		this.booted = true;
+	}
+
+	public runApplication(host: string, port: number, callback?: Action): void {
+		if (!this.booted) {
+			throw new Error("Application not booted yet! Call the bootApplicationServices hook to initialize the boot cycle.");
+		}
 
 		this.listenForIncomingConnections(host, port, callback);
 	}
 
 	private runProviderRegisterCycle(provider: Constructable<IServiceProvider>): IServiceProvider {
-		const providerInstance = new provider();
+		const providerInstance: IServiceProvider = new provider();
 
 		providerInstance.setContainer(this.container);
 		providerInstance.register();
@@ -38,7 +53,7 @@ export class Application implements IApplication {
 	}
 
 	private listenForIncomingConnections(host: string, port: number, callback?: Action): void {
-		const httpAdapter = this.container.get<IHttpAdapter>();
+		const httpAdapter: IHttpAdapter = this.container.get(CoreConst.IHttpAdapterToken);
 		if (!httpAdapter) throw new Error("No Http adapter configured to run the application");
 
 		httpAdapter.listen(host, port, callback);

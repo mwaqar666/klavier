@@ -1,8 +1,8 @@
 import type { Nullable } from "@klavier/utils";
-import { ConfigMap } from "../types";
+import type { ConfigMap } from "../types";
 
 export interface IConfigRepository {
-	getConfig<T>(key: string): Nullable<T>;
+	getConfig<T, Strict = true>(key: string): Strict extends true ? Nullable<T> : T;
 
 	setConfig(config: ConfigMap): void;
 

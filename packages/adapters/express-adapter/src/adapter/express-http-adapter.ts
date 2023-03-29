@@ -1,9 +1,14 @@
-import { AbstractHttpAdapter } from "@klavier/core";
+import { Inject } from "typedi";
 import type { Action } from "@klavier/utils";
+import { AbstractHttpAdapter } from "@klavier/core";
 import type { ExpressAdapter } from "./express";
+import { ExpressAdapterConst } from "../const";
 
 export class ExpressHttpAdapter extends AbstractHttpAdapter {
-	public constructor(private readonly expressAdapter: ExpressAdapter) {
+	public constructor(
+		// Dependencies
+		@Inject(ExpressAdapterConst.ExpressAdapterToken) private readonly expressAdapter: ExpressAdapter,
+	) {
 		super();
 	}
 

@@ -12,7 +12,7 @@
       "options": {
         "rootDir": "packages/config/src",
         "outputPath": "dist/packages/config",
-        "main": "packages/config/src/index.ts",
+        "main": "packages/config/index.js",
         "tsConfig": "packages/config/tsconfig.json",
         "assets": [
           "packages/config/*.md"

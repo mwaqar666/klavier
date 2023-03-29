@@ -1,9 +1,11 @@
-import { AbstractServiceProvider, type IHttpAdapter } from "@klavier/core";
-import type { ExpressHttpAdapter } from "../adapter";
+import { AbstractServiceProvider, CoreConst } from "@klavier/core";
+import { ExpressAdapterConst } from "../const";
+import { ExpressAdapter, ExpressHttpAdapter } from "../adapter";
 
 export class ExpressServiceProvider extends AbstractServiceProvider {
 	public register(): void {
-		this.container.registerSingleton<IHttpAdapter, ExpressHttpAdapter>();
+		this.container.set(CoreConst.IHttpAdapterToken, { type: ExpressHttpAdapter });
+		this.container.set(ExpressAdapterConst.ExpressAdapterToken, { type: ExpressAdapter });
 	}
 
 	public boot(): void {

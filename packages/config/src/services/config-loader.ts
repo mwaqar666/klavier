@@ -11,10 +11,10 @@ export class ConfigLoader implements IConfigLoader {
 	}
 
 	public loadConfig(absoluteFilePath: string): void {
-		const fileStringContents = readFileSync(absoluteFilePath, "utf8");
+		const fileStringContents: string = readFileSync(absoluteFilePath, "utf8");
 
 		try {
-			const yamlEnvironment = loadYamlEnvironment(fileStringContents) as ConfigMap;
+			const yamlEnvironment: ConfigMap = loadYamlEnvironment(fileStringContents) as ConfigMap;
 
 			this.configRepository.setConfig(yamlEnvironment);
 		} catch (e) {

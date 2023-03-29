@@ -1,7 +1,7 @@
-import type { DIContainer } from "@wessberg/di";
+import type { IContainer } from "../container";
 
 export interface IServiceProvider {
-	setContainer(container: DIContainer): void;
+	setContainer(container: IContainer): void;
 
 	register(): void;
 

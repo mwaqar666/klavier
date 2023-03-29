@@ -12,7 +12,7 @@
       "options": {
         "rootDir": "packages/adapters/express-adapter/src",
         "outputPath": "dist/packages/adapters/express-adapter",
-        "main": "packages/adapters/express-adapter/src/index.ts",
+        "main": "packages/adapters/express-adapter/index.js",
         "tsConfig": "packages/adapters/express-adapter/tsconfig.json",
         "assets": [
           "packages/adapters/express-adapter/*.md"
