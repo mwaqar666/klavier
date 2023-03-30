@@ -20,12 +20,20 @@ export class Application implements IApplication {
 	}
 
 	public registerApplicationService(provider: Constructable<IServiceProvider>): void {
+		if (!this.container) {
+			throw new Error("No service container registered to add the provider!");
+		}
+
 		const providerInstance: IServiceProvider = this.runProviderRegisterCycle(provider);
 
 		this.applicationProviders.push(providerInstance);
 	}
 
 	public bootApplicationServices(): void {
+		if (this.booted) {
+			throw new Error("Application already booted!");
+		}
+
 		this.runRegisteredProvidersBootCycle();
 
 		this.booted = true;

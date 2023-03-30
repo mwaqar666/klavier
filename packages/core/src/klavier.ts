@@ -1,23 +1,15 @@
 import type { IApplication } from "./contracts/application";
 import type { IServiceProvider } from "./contracts/provider";
 import type { Action, Constructable } from "@klavier/utils";
+import type { IContainer } from "./contracts/container";
 import { Application } from "./application";
 
 export class Klavier {
 	private static klavier: Klavier;
+	private application: IApplication;
 
 	private constructor() {
 		this.initializeApplication();
-	}
-
-	private _application: IApplication;
-
-	public get application(): IApplication {
-		return this._application;
-	}
-
-	public set application(value: IApplication) {
-		this._application = value;
 	}
 
 	public static getInstance(): Klavier {
@@ -38,6 +30,10 @@ export class Klavier {
 		this.application.bootApplicationServices();
 
 		return this;
+	}
+
+	public serviceContainer(): IContainer {
+		return this.application.getServiceContainer();
 	}
 
 	public run(host: string, port: number, callback?: Action): void {
